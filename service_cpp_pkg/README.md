@@ -13,3 +13,13 @@
 - Directory to workspace
 - Source: $. install/setup.bash
 - Run: $ros2 run service_cpp_pkg service_client 2 3
+
+# Test srv server
+- Directory to workspace
+- Source: $. install/setup.bash
+- Run: $ros2 run service_cpp_pkg test_srv_server
+
+# Test srv client
+- Directory to workspace
+- Source: $. install/setup.bash
+- Run: $ros2 run service_cpp_pkg test_srv_client 2 3 1
