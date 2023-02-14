@@ -9,26 +9,23 @@ using namespace std::chrono_literals;
 
 class MinimalPublisher : public rclcpp::Node
 {
-public:
-  MinimalPublisher()
-  : Node("minimal_publisher"), count_(0)
-  {
-    publisher_ = this->create_publisher<msg_srv_pkg::msg::Num>("topic", 10);    // CHANGE
-    timer_ = this->create_wall_timer(
-      500ms, std::bind(&MinimalPublisher::timer_callback, this));
-  }
+  public:
+    MinimalPublisher() : Node("minimal_publisher"), count_(0){
+      publisher_ = this->create_publisher<msg_srv_pkg::msg::Num>("topic", 10);    // CHANGE
+      timer_ = this->create_wall_timer(
+        500ms, std::bind(&MinimalPublisher::timer_callback, this));
+    }
 
-private:
-  void timer_callback()
-  {
-    auto message = msg_srv_pkg::msg::Num();                               // CHANGE
-    message.num = this->count_++;                                        // CHANGE
-    RCLCPP_INFO(this->get_logger(), "test_pub_msg.cpp - Publishing: '%d'", message.num);    // CHANGE
-    publisher_->publish(message);
-  }
-  rclcpp::TimerBase::SharedPtr timer_;
-  rclcpp::Publisher<msg_srv_pkg::msg::Num>::SharedPtr publisher_;         // CHANGE
-  size_t count_;
+  private:
+    void timer_callback(){
+      auto message = msg_srv_pkg::msg::Num();                               // CHANGE
+      message.num = this->count_++;                                        // CHANGE
+      RCLCPP_INFO(this->get_logger(), "test_pub_msg.cpp - Publishing: %ld", message.num);    // CHANGE
+      publisher_->publish(message);
+    }
+    rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Publisher<msg_srv_pkg::msg::Num>::SharedPtr publisher_;         // CHANGE
+    size_t count_;
 };
 
 int main(int argc, char * argv[])

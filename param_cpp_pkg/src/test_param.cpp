@@ -12,8 +12,7 @@ class ParametersClass: public rclcpp::Node
   public:
     ParametersClass() : Node("parameter_node"){
       this->declare_parameter<std::string>("test_parameter", "Robotics");
-      timer_ = this->create_wall_timer(
-      1000ms, std::bind(&ParametersClass::respond, this));
+      timer_ = this->create_wall_timer(1000ms, std::bind(&ParametersClass::respond, this));
     }
     void respond(){
       this->get_parameter("test_parameter", parameter_string_);
