@@ -36,9 +36,7 @@ int main(int argc, char **argv)
 
   auto result = client->async_send_request(request);
   // Wait for the result.
-  if (rclcpp::spin_until_future_complete(node, result) ==
-    rclcpp::executor::FutureReturnCode::SUCCESS)
-  {
+  if (rclcpp::spin_until_future_complete(node, result) == rclcpp::FutureReturnCode::SUCCESS){
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - Sum: %ld", result.get()->sum);
   } else {
     RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - Failed to call service add_three_ints");    // CHANGE
