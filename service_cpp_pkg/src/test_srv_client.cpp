@@ -1,5 +1,3 @@
-// https://docs.ros.org/en/foxy/Tutorials/Custom-ROS2-Interfaces.html
-
 #include "rclcpp/rclcpp.hpp"
 #include "msg_srv_pkg/srv/sum_srv.hpp"        // CHANGE
 #include <chrono>
@@ -13,7 +11,7 @@ int main(int argc, char **argv)
   rclcpp::init(argc, argv);
 
   if (argc != 4) { // CHANGE
-      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - usage: add_three_ints_client X Y Z");      // CHANGE
+      RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Usage: add_three_ints_client X Y Z");      // CHANGE
       return 1;
   }
 
@@ -27,18 +25,18 @@ int main(int argc, char **argv)
 
   while (!client->wait_for_service(1s)) {
     if (!rclcpp::ok()) {
-      RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - Interrupted while waiting for the service. Exiting.");
+      RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
       return 0;
     }
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - service not available, waiting again...");
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
   }
 
   auto result = client->async_send_request(request);
   // Wait for the result.
   if (rclcpp::spin_until_future_complete(node, result) == rclcpp::FutureReturnCode::SUCCESS){
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - Sum: %ld", result.get()->sum);
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Sum: %ld", result.get()->sum);
   } else {
-    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "test_srv_client.cpp - Failed to call service add_three_ints");    // CHANGE
+    RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_three_ints");    // CHANGE
   }
 
   rclcpp::shutdown();

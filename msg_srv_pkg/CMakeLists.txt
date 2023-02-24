@@ -5,14 +5,13 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
-set(msg_files
-  "msg/AddressBook.msg"
-)
+set(msg_files "msg/AddressBook.msg")
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Num.msg"
   "srv/SumSrv.srv"
   ${msg_files}
+  #DEPENDENCIES geometry_msgs
 )
 
 ament_export_dependencies(rosidl_default_runtime)
