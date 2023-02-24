@@ -1,5 +1,6 @@
 # Reference link:
 - https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html
+- https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html
 
 # Create package
 - Directory to ros2_basic folder
@@ -17,3 +18,6 @@
 
 # Show srv
 - Run: $ros2 interface show msg_srv_pkg/srv/SumSrv
+
+# Test Msg
+- Run: $ros2 run msg_srv_pkg publish_address_book

@@ -19,7 +19,7 @@ class AddressBookPublisher : public rclcpp::Node
         message.gender = message.MALE;
         message.address = "unknown";
 
-        std::cout << "publish_address_book.cpp - Publishing Contact - First:" << message.first_name << "  Last:" << message.last_name << std::endl;
+        std::cout << "Publishing Contact - First:" << message.first_name << "  Last:" << message.last_name << std::endl;
         this->address_book_publisher_->publish(message);
       };
       timer_ = this->create_wall_timer(1s, publish_msg);
