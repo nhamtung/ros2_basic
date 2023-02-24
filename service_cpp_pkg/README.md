@@ -6,7 +6,7 @@
 - Create: $ros2 pkg create --build-type ament_cmake service_cpp_pkg --dependencies rclcpp example_interfaces
 
 # Check for missing dependencies before building
-- rosdep install -i --from-path src --rosdistro humble -y
+- $rosdep install -i --from-path src --rosdistro humble -y
 
 # Build
 - $colcon build --packages-select service_cpp_pkg
