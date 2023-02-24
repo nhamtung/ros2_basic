@@ -1,3 +1,7 @@
+# Reference
+- https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
+- https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html
+
 # Build
 - $colcon build --packages-select topic_cpp_pkg
 

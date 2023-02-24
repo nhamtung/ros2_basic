@@ -1,5 +1,3 @@
-// https://docs.ros.org/en/foxy/Tutorials/Custom-ROS2-Interfaces.html
-
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
 #include "msg_srv_pkg/msg/num.hpp"     // CHANGE

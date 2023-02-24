@@ -1,5 +1,3 @@
-// https://docs.ros.org/en/foxy/Tutorials/Custom-ROS2-Interfaces.html
-
 #include <chrono>
 #include <memory>
 #include "rclcpp/rclcpp.hpp"

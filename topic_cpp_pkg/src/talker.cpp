@@ -1,5 +1,3 @@
-// https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
-
 #include <chrono>
 #include <functional>
 #include <memory>
