@@ -11,4 +11,7 @@
 
 # Change via console
 - $ros2 param list
-- $ros2 param set /parameter_node test_parameter earth
+- $ros2 param set /parameter_node test_parameter TungNV
+
+# Change via launch file
+- $ros2 launch param_py_pkg param_launch.py

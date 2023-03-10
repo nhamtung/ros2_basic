@@ -1,5 +1,3 @@
-# https://docs.ros.org/en/foxy/Tutorials/Using-Parameters-In-A-Class-Python.html
-
 import rclpy
 import rclpy.node
 from rclpy.exceptions import ParameterNotDeclaredException
@@ -10,7 +8,6 @@ class MinimalParam(rclpy.node.Node):
         super().__init__('parameter_node')
         timer_period = 2  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
-
         self.declare_parameter('test_parameter', 'Robotics')
 
     def timer_callback(self):
@@ -18,11 +15,7 @@ class MinimalParam(rclpy.node.Node):
 
         self.get_logger().info('Hello %s!' % my_param)
 
-        my_new_param = rclpy.parameter.Parameter(
-            'test_parameter',
-            rclpy.Parameter.Type.STRING,
-            'world'
-        )
+        my_new_param = rclpy.parameter.Parameter('test_parameter', rclpy.Parameter.Type.STRING, 'world')
         all_new_parameters = [my_new_param]
         self.set_parameters(all_new_parameters)
 
