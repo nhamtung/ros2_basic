@@ -7,8 +7,11 @@
 # Run test param
 - Directory to workspace
 - Source: $. install/setup.bash
-- Run: $ros2 run param_cpp_pkg test_param
+- Run: ros2 run param_cpp_pkg test_param
 
 # Change via console
 - $ros2 param list
-- $ros2 param set /parameter_node test_parameter earth
+- $ros2 param set /parameter_node test_parameter TungNV
+
+# Change via launch file
+- $ros2 launch param_cpp_pkg param_cpp.py

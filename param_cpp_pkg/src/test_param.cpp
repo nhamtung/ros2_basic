@@ -1,5 +1,3 @@
-// https://docs.ros.org/en/foxy/Tutorials/Using-Parameters-In-A-Class-CPP.html
-
 #include <rclcpp/rclcpp.hpp>
 #include <chrono>
 #include <string>
