@@ -3,16 +3,13 @@
 
 namespace polygon_plugins
 {
-  class Square : public polygon_base::RegularPolygon
-  {
+  class Square : public polygon_base::RegularPolygon{
     public:
-      void initialize(double side_length) override
-      {
+      void initialize(double side_length) override{
         side_length_ = side_length;
       }
 
-      double area() override
-      {
+      double area() override{
         return side_length_ * side_length_;
       }
 
@@ -20,21 +17,17 @@ namespace polygon_plugins
       double side_length_;
   };
 
-  class Triangle : public polygon_base::RegularPolygon
-  {
+  class Triangle : public polygon_base::RegularPolygon{
     public:
-      void initialize(double side_length) override
-      {
+      void initialize(double side_length) override {
         side_length_ = side_length;
       }
 
-      double area() override
-      {
+      double area() override {
         return 0.5 * side_length_ * getHeight();
       }
 
-      double getHeight()
-      {
+      double getHeight() {
         return sqrt((side_length_ * side_length_) - ((side_length_ / 2) * (side_length_ / 2)));
       }
 

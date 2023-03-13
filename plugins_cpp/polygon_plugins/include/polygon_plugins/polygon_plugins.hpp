@@ -5,14 +5,11 @@
 
 namespace polygon_plugins
 {
-
-class PolygonPlugins
-{
-public:
-  PolygonPlugins();
-
-  virtual ~PolygonPlugins();
-};
+  class PolygonPlugins{
+    public:
+      PolygonPlugins();
+      virtual ~PolygonPlugins();
+    };
 
 }  // namespace polygon_plugins
 

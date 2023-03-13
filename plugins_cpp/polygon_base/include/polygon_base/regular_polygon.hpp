@@ -3,8 +3,7 @@
 
 namespace polygon_base
 {
-  class RegularPolygon
-  {
+  class RegularPolygon{
     public:
       virtual void initialize(double side_length) = 0;
       virtual double area() = 0;
