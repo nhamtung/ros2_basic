@@ -1,5 +1,6 @@
 # Reference link:
 - https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Substitutions.html
+- https://docs.ros.org/en/humble/Tutorials/Intermediate/Launch/Using-Event-Handlers.html
 
 # Build
 - $colcon build --packages-select launch_tutorial
@@ -18,3 +19,8 @@
 - Directory to workspace
 - Source: $. install/setup.bash
 - Run: $ros2 launch launch_tutorial example_substitutions.launch.py --show-args
+
+# Test event handlers
+- Directory to workspace
+- Source: $. install/setup.bash
+- Run: $ros2 launch launch_tutorial example_event_handlers.launch.py turtlesim_ns:='turtlesim3' use_provided_red:='True' new_background_r:=200
