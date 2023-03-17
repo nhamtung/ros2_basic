@@ -8,6 +8,7 @@
 - Directory to workspace
 - Source: $. install/setup.bash
 - Run: $ros2 run learning_tf2_py static_turtle_tf2_broadcaster mystaticturtle 0 0 1 0 0 0
+- Launch: $ros2 launch learning_tf2_py learning_tf2.launch.py
 
 # Check
 - Directory to workspace
