@@ -6,7 +6,7 @@
 # Build
 - $colcon build --packages-select learning_tf2_py
 
-### Writing a static broadcaster ###
+# --- Writing a static broadcaster ---
 # Set static broadcaster
 - Directory to workspace
 - Source: $. install/setup.bash
@@ -18,7 +18,7 @@
 - Source: $. install/setup.bash
 - $ros2 topic echo /tf_static
 
-### Writing a broadcaster ###
+# --- Writing a broadcaster ---
 # Test broadcaster
 - Directory to workspace
 - Source: $. install/setup.bash
@@ -34,7 +34,7 @@
 - Source: $. install/setup.bash
 - $ros2 run tf2_ros tf2_echo world turtle1
 
-### Writing a listener ###
+# --- Writing a listener ---
 # Test listener
 - Directory to workspace
 - Source: $. install/setup.bash
