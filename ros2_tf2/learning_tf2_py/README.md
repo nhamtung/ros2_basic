@@ -26,7 +26,7 @@
 # Test move
 - Directory to workspace
 - Source: $. install/setup.bash
-- Launch: $ros2 launch learning_tf2_py turtle_tf2_demo.launch.py
+- Launch: $ros2 run turtlesim turtle_teleop_key
 
 # Check broadcaster
 - Directory to workspace
