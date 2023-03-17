@@ -38,7 +38,7 @@
 ## Test listener
 - Directory to workspace
 - Source: $. install/setup.bash
-- Launch: $ros2 launch learning_tf2_py turtle_tf2_demo.launch.py
+- Launch: $ros2 launch learning_tf2_py turtle_tf2_listener.launch.py
 
 ## Test move
 - Directory to workspace
