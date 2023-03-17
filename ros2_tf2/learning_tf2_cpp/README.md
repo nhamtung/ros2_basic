@@ -33,9 +33,8 @@
 - Source: $. install/setup.bash
 - $ros2 run tf2_ros tf2_echo world turtle1
 
-# --------------------------
-# --- Writing a listener ---
-# Test listener
+# Writing a listener
+## Test listener
 - Directory to workspace
 - Source: $. install/setup.bash
 - Launch: $ros2 launch learning_tf2_cpp turtle_tf2_demo.launch.py
