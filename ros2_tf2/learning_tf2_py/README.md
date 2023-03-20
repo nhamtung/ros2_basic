@@ -40,3 +40,4 @@
 # Using stamped datatypes with tf2_ros::MessageFilter
 - Launch: $ros2 launch learning_tf2_py turtle_tf2_sensor_message.launch.py
 - Echo: $ros2 topic echo /turtle3/turtle_point_stamped
+- Run: $ros2 run learning_tf2_cpp turtle_tf2_message_filter
