@@ -25,11 +25,15 @@ ament_target_dependencies(test_pub_msg rclcpp msg_pkg)
 add_executable(test_sub_msg src/test_sub_msg.cpp)
 ament_target_dependencies(test_sub_msg rclcpp msg_pkg)
 
+add_executable(listener_with_topic_statistics src/member_function_with_topic_statistics.cpp)
+ament_target_dependencies(listener_with_topic_statistics rclcpp std_msgs)
+
 install(TARGETS
   talker
   listener
   test_pub_msg
   test_sub_msg
+  listener_with_topic_statistics
   DESTINATION lib/${PROJECT_NAME})
 
 ament_package()
