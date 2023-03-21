@@ -1,6 +1,7 @@
 # Reference
 - https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Building-a-Visual-Robot-Model-with-URDF-from-Scratch.html
 - https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Building-a-Movable-Robot-Model-with-URDF.html
+- https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Adding-Physical-and-Collision-Properties-to-a-URDF-Model.html
 
 # Requirement
 - Install urdf_tutorial package: $sudo apt install ros-humble-urdf-tutorial
@@ -19,3 +20,6 @@
 
 # Building a movable robot model
 - Launch: $ros2 launch urdf_tutorial display.launch.py model:=./src/ros2_basic/ros2_urdf/urdf/06-flexible.urdf
+
+# Adding physical and collision properties
+- Launch: $ros2 launch urdf_tutorial display.launch.py model:=./src/ros2_basic/ros2_urdf/urdf/07-physics.urdf
