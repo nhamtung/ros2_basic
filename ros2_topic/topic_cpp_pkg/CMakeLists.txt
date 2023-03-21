@@ -13,7 +13,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(msg_srv_pkg REQUIRED)   
+find_package(msg_pkg REQUIRED)   
 
 add_executable(talker src/talker.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
@@ -21,9 +21,9 @@ add_executable(listener src/listener.cpp)
 ament_target_dependencies(listener rclcpp std_msgs)
 
 add_executable(test_pub_msg src/test_pub_msg.cpp)
-ament_target_dependencies(test_pub_msg rclcpp msg_srv_pkg)
+ament_target_dependencies(test_pub_msg rclcpp msg_pkg)
 add_executable(test_sub_msg src/test_sub_msg.cpp)
-ament_target_dependencies(test_sub_msg rclcpp msg_srv_pkg)
+ament_target_dependencies(test_sub_msg rclcpp msg_pkg)
 
 install(TARGETS
   talker

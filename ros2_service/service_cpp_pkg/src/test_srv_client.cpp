@@ -1,5 +1,5 @@
 #include "rclcpp/rclcpp.hpp"
-#include "msg_srv_pkg/srv/sum_srv.hpp"        // CHANGE
+#include "srv_pkg/srv/sum_srv.hpp"        // CHANGE
 #include <chrono>
 #include <cstdlib>
 #include <memory>
@@ -16,9 +16,9 @@ int main(int argc, char **argv)
   }
 
   std::shared_ptr<rclcpp::Node> node = rclcpp::Node::make_shared("add_three_ints_client"); // CHANGE
-  rclcpp::Client<msg_srv_pkg::srv::SumSrv>::SharedPtr client = node->create_client<msg_srv_pkg::srv::SumSrv>("add_three_ints");                  // CHANGE
+  rclcpp::Client<srv_pkg::srv::SumSrv>::SharedPtr client = node->create_client<srv_pkg::srv::SumSrv>("add_three_ints");                  // CHANGE
 
-  auto request = std::make_shared<msg_srv_pkg::srv::SumSrv::Request>();               // CHANGE
+  auto request = std::make_shared<srv_pkg::srv::SumSrv::Request>();               // CHANGE
   request->a = atoll(argv[1]);
   request->b = atoll(argv[2]);
   request->c = atoll(argv[3]);               // CHANGE

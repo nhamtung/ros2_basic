@@ -1,20 +1,20 @@
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
-#include "msg_srv_pkg/msg/num.hpp"     // CHANGE
+#include "msg_pkg/msg/num.hpp"     // CHANGE
 using std::placeholders::_1;
 
 class MinimalSubscriber : public rclcpp::Node
 {
   public:
     MinimalSubscriber() : Node("msg_subscriber"){
-      subscription_ = this->create_subscription<msg_srv_pkg::msg::Num>("topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+      subscription_ = this->create_subscription<msg_pkg::msg::Num>("topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
 
   private:
-    void topic_callback(const msg_srv_pkg::msg::Num::SharedPtr msg) const {
+    void topic_callback(const msg_pkg::msg::Num::SharedPtr msg) const {
       RCLCPP_INFO(this->get_logger(), "I heard: '%ld'", msg->num);              // CHANGE
     }
-    rclcpp::Subscription<msg_srv_pkg::msg::Num>::SharedPtr subscription_;       // CHANGE
+    rclcpp::Subscription<msg_pkg::msg::Num>::SharedPtr subscription_;       // CHANGE
 };
 
 int main(int argc, char * argv[])

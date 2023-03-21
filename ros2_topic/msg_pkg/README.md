@@ -3,21 +3,18 @@
 - https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html
 
 # Create package
-- Directory to ros2_basic folder
-- Create: $ros2 pkg create --build-type ament_cmake msg_srv_pkg
+- Directory to folder
+- Create: $ros2 pkg create --build-type ament_cmake msg_pkg
 
 # Check for missing dependencies before building
 - $rosdep install -i --from-path src --rosdistro humble -y
 
 # Build
-- $colcon build --packages-select msg_srv_pkg
+- $colcon build --packages-select msg_pkg
 - Source: $. install/setup.bash
 
 # Show msg
-- Run: $ros2 interface show msg_srv_pkg/msg/Num
-
-# Show srv
-- Run: $ros2 interface show msg_srv_pkg/srv/SumSrv
+- Run: $ros2 interface show msg_pkg/msg/Num
 
 # Test Msg
-- Run: $ros2 run msg_srv_pkg publish_address_book
+- Run: $ros2 run msg_pkg publish_address_book

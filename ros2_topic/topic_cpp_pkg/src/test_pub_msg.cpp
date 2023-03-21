@@ -1,7 +1,7 @@
 #include <chrono>
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
-#include "msg_srv_pkg/msg/num.hpp"     // CHANGE
+#include "msg_pkg/msg/num.hpp"     // CHANGE
 
 using namespace std::chrono_literals;
 
@@ -9,19 +9,19 @@ class MinimalPublisher : public rclcpp::Node
 {
   public:
     MinimalPublisher() : Node("msg_publisher"), count_(0){
-      publisher_ = this->create_publisher<msg_srv_pkg::msg::Num>("topic", 10);    // CHANGE
+      publisher_ = this->create_publisher<msg_pkg::msg::Num>("topic", 10);    // CHANGE
       timer_ = this->create_wall_timer(500ms, std::bind(&MinimalPublisher::timer_callback, this));
     }
 
   private:
     void timer_callback(){
-      auto message = msg_srv_pkg::msg::Num();                               // CHANGE
+      auto message = msg_pkg::msg::Num();                               // CHANGE
       message.num = this->count_++;                                        // CHANGE
       RCLCPP_INFO(this->get_logger(), "Publishing: %ld", message.num);    // CHANGE
       publisher_->publish(message);
     }
     rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<msg_srv_pkg::msg::Num>::SharedPtr publisher_;         // CHANGE
+    rclcpp::Publisher<msg_pkg::msg::Num>::SharedPtr publisher_;         // CHANGE
     size_t count_;
 };
 

@@ -1,7 +1,7 @@
 #include <chrono>
 #include <memory>
 #include "rclcpp/rclcpp.hpp"
-#include "msg_srv_pkg/msg/address_book.hpp"
+#include "msg_pkg/msg/address_book.hpp"
 
 using namespace std::chrono_literals;
 
@@ -9,9 +9,9 @@ class AddressBookPublisher : public rclcpp::Node
 {
   public:
     AddressBookPublisher() : Node("address_book_publisher"){
-      address_book_publisher_ = this->create_publisher<msg_srv_pkg::msg::AddressBook>("address_book", 10);
+      address_book_publisher_ = this->create_publisher<msg_pkg::msg::AddressBook>("address_book", 10);
       auto publish_msg = [this]() -> void {
-        auto message = msg_srv_pkg::msg::AddressBook();
+        auto message = msg_pkg::msg::AddressBook();
 
         message.first_name = "John";
         message.last_name = "Doe";
@@ -26,7 +26,7 @@ class AddressBookPublisher : public rclcpp::Node
     }
 
   private:
-    rclcpp::Publisher<msg_srv_pkg::msg::AddressBook>::SharedPtr address_book_publisher_;
+    rclcpp::Publisher<msg_pkg::msg::AddressBook>::SharedPtr address_book_publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
 };
 
