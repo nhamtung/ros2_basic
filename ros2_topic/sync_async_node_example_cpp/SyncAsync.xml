@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<profiles xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+
+    <!-- default publisher profile -->
+    <publisher profile_name="default_publisher" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </publisher>
+
+    <!-- default subscriber profile -->
+    <subscriber profile_name="default_subscriber" is_default_profile="true">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+    </subscriber>
+
+    <!-- publisher profile for topic sync_topic -->
+    <publisher profile_name="/sync_topic">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+        <qos>
+            <publishMode>
+                <kind>SYNCHRONOUS</kind>
+            </publishMode>
+            <partition>
+                <names>
+                    <name>part1</name>
+                </names>
+            </partition>
+        </qos>
+    </publisher>
+
+    <!-- subscriber profile for topic sync_topic -->
+    <subscriber profile_name="/sync_topic">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+        <qos>
+            <partition>
+                <names>
+                    <name>part2</name>
+                </names>
+            </partition>
+        </qos>
+    </subscriber>
+
+    <!-- publisher profile for topic async_topic -->
+    <publisher profile_name="/async_topic">
+        <historyMemoryPolicy>DYNAMIC</historyMemoryPolicy>
+        <qos>
+            <publishMode>
+                <kind>ASYNCHRONOUS</kind>
+            </publishMode>
+        </qos>
+        <matchedSubscribersAllocation>
+            <initial>0</initial>
+            <maximum>1</maximum>
+            <increment>1</increment>
+        </matchedSubscribersAllocation>
+    </publisher>
+
+ </profiles>
