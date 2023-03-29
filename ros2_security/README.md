@@ -4,6 +4,7 @@
 - Security-on-Two: https://docs.ros.org/en/humble/Tutorials/Advanced/Security/Security-on-Two.html
 - Traffic: https://docs.ros.org/en/humble/Tutorials/Advanced/Security/Examine-Traffic.html#id5
 - Access: https://docs.ros.org/en/humble/Tutorials/Advanced/Security/Access-Controls.html
+- Deployment: https://docs.ros.org/en/humble/Tutorials/Advanced/Security/Deployment-Guidelines.html
 
 # Requirement:
 - Install libssl-dev: $sudo apt install libssl-dev
@@ -44,3 +45,12 @@
     + ros2 run demo_nodes_cpp talker --ros-args -e /talker_listener/talker
     + $ros2 run demo_nodes_py listener --ros-args -e /talker_listener/listener
 - Check access: $ros2 run demo_nodes_py listener --ros-args --enclave /talker_listener/listener --remap chatter:=not_chatter
+
+# Deployment
+- Directory: $cd ./src/ros2_basic/ros2_security
+- Generating the Docker Image: $sudo docker build -t ros2_security/deployment_tutorial --build-arg ROS_DISTRO=humble .
+- Run: $sudo docker compose -f compose.deployment.yaml up
+- Check:
+    + $sudo docker exec -it tutorial-listener-1 bash
+    + $cd keystore
+    + $tree
