@@ -4,7 +4,7 @@
 
 # Create package
 - Directory to folder
-- Create: $ros2 pkg create --build-type ament_cmake msg_pkg
+- Create: $ros2 pkg create msg_pkg --build-type ament_cmake --dependencies rclcpp
 
 # Check for missing dependencies before building
 - $rosdep install -i --from-path src --rosdistro humble -y
