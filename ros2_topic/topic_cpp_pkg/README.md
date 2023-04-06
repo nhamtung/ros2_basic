@@ -1,8 +1,11 @@
 # Reference
+- Package: https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
 - Msg: https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Custom-ROS2-Interfaces.html
-- Example: https://docs.ros.org/en/foxy/Tutorials/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html
 - Topic Statistics: https://docs.ros.org/en/humble/Tutorials/Advanced/Topic-Statistics-Tutorial/Topic-Statistics-Tutorial.html
 - Discovery Server: https://docs.ros.org/en/humble/Tutorials/Advanced/Discovery-Server/Discovery-Server.html
+
+# Create a package
+- $ros2 pkg create --build-type ament_cmake topic_cpp_pkg
 
 # Build
 - $colcon build --packages-select topic_cpp_pkg
