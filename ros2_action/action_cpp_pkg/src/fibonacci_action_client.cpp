@@ -40,7 +40,7 @@ public:
 
     auto send_goal_options = rclcpp_action::Client<Fibonacci>::SendGoalOptions();
     send_goal_options.goal_response_callback = std::bind(&FibonacciActionClient::goal_response_callback, this, _1);
-    send_goal_options.feedback_callback = td::bind(&FibonacciActionClient::feedback_callback, this, _1, _2);
+    send_goal_options.feedback_callback = std::bind(&FibonacciActionClient::feedback_callback, this, _1, _2);
     send_goal_options.result_callback = std::bind(&FibonacciActionClient::result_callback, this, _1);
     this->client_ptr_->async_send_goal(goal_msg, send_goal_options);
   }
