@@ -20,7 +20,7 @@ public:
     options.topic_stats_options.publish_period = std::chrono::seconds(1);
 
     // configure the topic name (default '/statistics')
-    // options.topic_stats_options.publish_topic = "/topic_statistics"
+    options.topic_stats_options.publish_topic = "/topic_statistics";
 
     auto callback = [this](std_msgs::msg::String::SharedPtr msg) {
         this->topic_callback(msg);
