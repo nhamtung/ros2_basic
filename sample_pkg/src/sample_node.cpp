@@ -65,7 +65,7 @@ class SampleNode : public rclcpp::Node, public ParamHandler
     }
     void chatterCallback(const std_msgs::msg::String::SharedPtr msg) {
       RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
-      diagnostic_->addAndPubDiagnostic(sample_node_, OperatorLevel::OPERATOR_OK, 3, "I heard: " + msg->data);
+      diagnostic_->addAndPubDiagnostic(sample_node_, OperatorLevel::OPERATOR_OK, 3.0, "chatter data: " + msg->data);
     }
 
   private:
