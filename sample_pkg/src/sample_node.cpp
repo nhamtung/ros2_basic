@@ -16,78 +16,77 @@ class SampleNode : public rclcpp::Node, public ParamHandler
     SampleNode() : Node("sample_node"), ParamHandler(this){
       chatter_sub_ = this->create_subscription<std_msgs::msg::String>("chatter", 10, std::bind(&SampleNode::chatterCallback, this, _1));
     }
-    ~SampleNode() {
-      stop_thread_ = true;
-      if(loop_thread_.joinable()){
-        loop_thread_.join();
-      }
-    }
+    ~SampleNode() {}
+
     void init(){
       initDiagnostic();
       loadParam();
 
-      stop_thread_ = false;
-      loop_thread_ = std::thread(&SampleNode::loopFunction, this);
-      
-      diagnostic_->addAndPubDiagnostic(sample_node_, OperatorLevel::OPERATOR_OK, 0, "manage_loggers node has been started.");
+      loop_timer_ = this->create_wall_timer(std::chrono::duration<double>(0.5), std::bind(&SampleNode::loopFunction, this));
+      diagnostic_->addAndPubDiagnostic(sample_node, OperatorLevel::OPERATOR_OK, 0, "manage_loggers node has been started.");
     }
+
+  private:
+    // Thread
+    rclcpp::TimerBase::SharedPtr loop_timer_;
+
+    // Diagnostic
+    std::shared_ptr<Diagnostic> diagnostic_;
+    std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus> sample_node;
+
+    // Subscription
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr chatter_sub_;
+
+    // Parameters
+    double max_speed{0.5};
+    int32_t available_disk_threshold = 10000; // MB
 
   private:
     void loadParam(){
       // max_speed
-      this->declare_parameter("max_speed", max_speed_);
-      max_speed_handle_ = this->addRemoteParameterCallback("control_navigation", "max_speed", [this](const rclcpp::Parameter & p) {
-        RCLCPP_INFO(this->get_logger(), "Received an update parameter from other node \"%s\" of type: %s: \"%.02lf\"", p.get_name().c_str(),p.get_type_name().c_str(),p.as_double());
-        max_speed_ = p.as_double();
-        diagnostic_->addAndPubDiagnostic(sample_node_, OperatorLevel::OPERATOR_OK, 0, "Received an update parameter max_speed from control_navigation: " + std::to_string(max_speed_));
+      this->declare_parameter("max_speed", max_speed);
+      this->get_parameter("max_speed", max_speed);
+      this->addParameterCallback("max_speed", [this](const rclcpp::Parameter & p) {
+        max_speed = p.as_double();
+        std::string message = "Updated " + p.get_name() + " = " + std::to_string(max_speed) + " (" + p.get_type_name() + ")";
+        diagnostic_->addAndPubDiagnostic(sample_node, OperatorLevel::OPERATOR_OK, 0, message);
+      });
+      // available_disk_threshold
+      this->get_parameter("available_disk_threshold", available_disk_threshold);
+      this->addRemoteParameterCallback("manage_informations", "available_disk_threshold", [this](const rclcpp::Parameter & p) {
+        available_disk_threshold = p.as_int();
+        std::string message = "Updated " + p.get_name() + " = " + std::to_string(available_disk_threshold) + " (" + p.get_type_name() + ")";
+        diagnostic_->addAndPubDiagnostic(sample_node, OperatorLevel::OPERATOR_OK, 0, message);
       });
     }
     void initDiagnostic()
     {
         diagnostic_ = std::make_shared<Diagnostic>(this, "sample_node");
 
-        sample_node_ = std::make_shared<diagnostic_msgs::msg::DiagnosticStatus>();
-        sample_node_->name = "sample_node";
-        sample_node_->hardware_id = "None";
-        sample_node_->level = diagnostic_msgs::msg::DiagnosticStatus::STALE;
-        sample_node_->message = "Starting up";
+        sample_node = std::make_shared<diagnostic_msgs::msg::DiagnosticStatus>();
+        sample_node->name = "sample_node";
+        sample_node->hardware_id = "None";
+        sample_node->level = diagnostic_msgs::msg::DiagnosticStatus::STALE;
+        sample_node->message = "Starting up";
 
-        diagnostic_->addStatusElement(sample_node_);
+        diagnostic_->addStatusElement(sample_node);
         diagnostic_->pubDiagnostic();
     }
     void loopFunction()
     {
-      rclcpp::Rate rate(1); // 1 Hz
-      while(!stop_thread_){
-        // Do something
-        rate.sleep();
-      }
+      // Do something
     }
     void chatterCallback(const std_msgs::msg::String::SharedPtr msg) {
       RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
-      diagnostic_->addAndPubDiagnostic(sample_node_, OperatorLevel::OPERATOR_OK, 3.0, "chatter data: " + msg->data);
+      diagnostic_->addAndPubDiagnostic(sample_node, OperatorLevel::OPERATOR_OK, 3.0, "chatter data: " + msg->data);
     }
 
-  private:
-    // Subscription
-    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr chatter_sub_;
-
-    // Thread
-    std::thread loop_thread_;
-    std::atomic<bool> stop_thread_{false};
-
-    // Diagnostic
-    std::shared_ptr<Diagnostic> diagnostic_;
-    std::shared_ptr<diagnostic_msgs::msg::DiagnosticStatus> sample_node_;
-
-    // Parameters
-    double max_speed_{0.5};
-    std::shared_ptr<rclcpp::ParameterCallbackHandle> max_speed_handle_;
 };
 
 int main(int argc, char * argv[])
 {
   rclcpp::init(argc, argv);
+
   auto node = std::make_shared<SampleNode>();
   node->init();
   rclcpp::spin(node);
